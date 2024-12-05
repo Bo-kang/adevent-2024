@@ -52,11 +52,54 @@ object Day5{
                     answer += updateOrder.getMiddleValue()
                 }
             }
+            return answer
+        }
+    }
 
+    class PartTwo(
+        inputOrders : List<String>,
+        inputUpdates: List<String>
+    ){
+        val parentChildren = toOrderMap(inputOrders)
+        val childParents = toOrderMap(inputOrders, 1, 0)
+        val updates = toUpdateList(inputUpdates)
+
+        fun solution(): Int {
+            var answer = 0
+            updates.forEach { updateOrder ->
+                var before = updateOrder[0]
+                var availableNext = parentChildren[before]
+                var result = true
+                for (i in 1 until updateOrder.size) {
+                    val current = updateOrder[i]
+                    if (availableNext != null && current in availableNext!!){
+                        before = current
+                        availableNext = parentChildren[before]
+                    }
+                    else {
+                        result = false
+                        break
+                    }
+                }
+
+                if(!result) {
+                    updateOrder.sortedWith(comp)
+                        .also {
+                            answer += it.getMiddleValue()
+                        }
+                }
+            }
             return answer
         }
 
+        val comp = Comparator { a: Int, b: Int ->
+            if(parentChildren[b]?.contains(a) == true) 1
+            else -1
+        }
     }
+
+
+
 }
 
 val inputOrders = listOf(
@@ -93,3 +136,4 @@ val inputUpdates = listOf(
 )
 
 println(Day5.PartOne(inputOrders, inputUpdates).solution())
+println(Day5.PartTwo(inputOrders, inputUpdates).solution())
