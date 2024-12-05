@@ -10,24 +10,43 @@ object Day2{
         return gap >= 1 && gap <= 3
     }
 
+    fun isOK(list: List<Int>): Boolean{
+        val isIncreasingNow = isIncreasing(list[0] , list[1])
+        for(i in 0 until list.size - 1){
+            if (isIncreasingNow != isIncreasing(list[i], list[i+1]) || !isValidGap(list[i], list[i+1])) {
+                return false
+            }
+        }
+        return true
+    }
+
     fun partOne(inputList: List<List<Int>>): Int {
         var answer = inputList.size
         inputList.forEach {
-            val isIncreasingNow = isIncreasing(it[0] , it[1])
+            if(!isOK(it))
+                answer--
+        }
+        return answer
+    }
 
-            for(i in 0 until it.size - 1){
-                if (isIncreasingNow != isIncreasing(it[i], it[i+1])) {
-                    answer--
-                    break
+    fun partTwo(inputList: List<List<Int>>): Int {
+        var answer = inputList.size
+        inputList.forEach {
+            if(!isOK(it)){
+                var ret = false
+                for(i in it.indices){
+                    val tmp = it.toMutableList()
+                    tmp.removeAt(i)
+                    if(isOK(tmp)){
+                        ret = true
+                        break
+                    }
                 }
-                if(!isValidGap(it[i], it[i+1])){
+                if(!ret){
                     answer--
-                    break
                 }
             }
         }
-
-
         return answer
     }
 }
@@ -43,7 +62,6 @@ fun processInput(input: String): List<List<Int>> {
 }
 
 val input = """
-16 16 18 21 23 24 26
 7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1
@@ -53,4 +71,5 @@ val input = """
 """.trimIndent()
 
 println(Day2.partOne(processInput(input)))
+println(Day2.partTwo(processInput(input)))
 
