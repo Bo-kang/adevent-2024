@@ -33,8 +33,7 @@ object Day4{
         return true
     }
 
-
-    fun solution(input: List<String>): Int{
+    fun partOneSolution(input: List<String>): Int{
         var answer = 0
 
         input.forEachIndexed { i, it ->
@@ -47,7 +46,6 @@ object Day4{
                 }
             }
         }
-
         return answer
     }
 }
@@ -68,5 +66,5 @@ val testInput = listOf(
             "MXMXAXMASX"
 )
 
-println(Day4.solution(testInput))
+println(Day4.partOneSolution(testInput))
 
