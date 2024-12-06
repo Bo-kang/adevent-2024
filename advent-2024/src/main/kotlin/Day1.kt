@@ -44,5 +44,3 @@ fun processInput(input: String, idx: Int = 0): List<Int> {
         .map { it.split("   ").map { it.toInt() } }.map { it[idx] }
 }
 
-println(Day1.partOne(processInput(input), processInput(input, 1)))
-println(Day1.partTwo(processInput(input), processInput(input, 1)))

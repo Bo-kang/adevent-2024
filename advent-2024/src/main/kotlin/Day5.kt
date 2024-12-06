@@ -135,5 +135,3 @@ val inputUpdates = listOf(
     "97,13,75,29,47"
 )
 
-println(Day5.PartOne(inputOrders, inputUpdates).solution())
-println(Day5.PartTwo(inputOrders, inputUpdates).solution())

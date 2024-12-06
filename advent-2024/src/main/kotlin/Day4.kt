@@ -85,20 +85,3 @@ object Day4{
     }
 }
 
-
-val testInput = listOf(
-            "MMMSXXMASM",
-            "MSAMXMSMSA",
-            "AMXSXMAAMM",
-            "MSAMASMSMX",
-            "XMASAMXAMM",
-            "XXAMMXXAMA",
-            "SMSMSASXSS",
-            "SAXAMASAAA",
-            "MAMMMXMMMM",
-            "MXMXAXMASX"
-)
-
-println(Day4.partOneSolution(testInput))
-println(Day4.partTwoSolution(testInput))
-
